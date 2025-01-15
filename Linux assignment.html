@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Commands Reference</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fefefe;
+            line-height: 1.6;
+            background: 
+                url('https://img.freepik.com/free-vector/abstract-banner-with-low-poly-plexus-network-communications-design_1048-12914.jpg') no-repeat center center fixed, 
+                url('https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg') no-repeat center center fixed;
+            background-size: cover, cover;
+            backdrop-filter: blur(25px);
+        }
+
+        .frosted {
+            background: rgba(0, 0, 0, 0.6); 
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px); /* Frosted glass effect */
+        }
+
+        h1 {
+            font-family: 'Georgia', serif;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 2.8em;
+            margin: 20px 0;
+        }
+
+        nav {
+            padding: 15px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6); 
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 3px;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #a8dadc;
+            color: #1d3557;
+        }
+
+        .container {
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        /* Hide all sections by default */
+        .command-box {
+            display: none;
+            background: rgba(0, 0, 0, 0.8); 
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            color: white;
+            overflow: hidden;
+        }
+
+        .command-box h2 {
+            color: #a8dadc;
+        }
+
+        .command-box pre {
+            background-color: rgba(255, 255, 255, 0.1); 
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        /* Image styling */
+        .command-box img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 500px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        /* Show only the targeted section */
+        .command-box:target {
+            display: block;
+        }
+
+        /* Show introduction by default */
+        #intro {
+            display: block;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8); 
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+            position: relative;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #a8dadc;
+            color: #1d3557;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .back-to-top:hover {
+            background: #457b9d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LINUX COMMANDS REFERENCE</h1>
+        <p>HELP AND INFORMATION COMMANDS</p>
+    </header>
+
+    <nav class="frosted">
+        <a href="#intro">Introduction</a>
+        <a href="#apropos">Apropos</a>
+        <a href="#info">Info</a>
+        <a href="#alias">Alias</a>
+        <a href="#uname">Uname</a>
+        <a href="#df">Df</a>
+        <a href="#du">Du</a>
+        <a href="#mount">Mount</a>
+        <a href="#ln">Ln</a>
+        <a href="#man">Man</a>
+    </nav>
+
+    <div class="container">
+        <div class="command-box" id="intro">
+            <h2>Introduction to Linux</h2>
+            <p>Linux is a robust, versatile, and widely-used operating system that plays a pivotal role in modern computing. It is the backbone of many of the world’s servers, supercomputers, and even mobile devices. Developed in 1991 by Linus Torvalds, the Linux kernel forms the core of various distributions (distros) such as Ubuntu, Fedora, CentOS, and Arch Linux.</p>
+            <p>One of Linux's key strengths is its open-source nature, which allows developers to contribute, modify, and share their work freely. This has fostered a vibrant community and a plethora of tools and utilities designed to make system management and automation efficient.</p>
+        </div>
+
+        <div class="command-box" id="apropos">
+            <h2>Apropos</h2>
+            <p>The <strong>apropos</strong> command searches the manual pages for commands related to a specific keyword. It's especially useful when you're unsure which command to use for a given task. This command helps save time by narrowing down possible commands relevant to your needs.</p>
+            <ul>
+                <li><strong>-d:</strong> Emit debugging messages. Displays man directories, global path, warnings, etc.</li>
+                <li><strong>-v:</strong> Print verbose warning messages.</li>
+                <li><strong>-e, --exact:</strong> Search for an exact match of the keyword in the man page description.</li>
+                <li><strong>-w, --wildcard:</strong> Use wildcards in the keyword(s) to search both page name and description.</li>
+                <li><strong>-a, --and:</strong> Require all keywords to match. Returns nothing if any keyword has no match.</li>
+                <li><strong>-l, --long:</strong> Prevent output from being truncated to the terminal width.</li>
+                <li><strong>-C:</strong> Use a custom configuration file instead of the default (/manpath).</li>
+                <li><strong>-L:</strong> Define the locale for the search.</li>
+                <li><strong>-m, --systems:</strong> Access manual pages from other systems.</li>
+                <li><strong>-M, --manpath:</strong> Set a custom search path for manual pages.</li>
+                <li><strong>-s, --sections, --section:</strong> Search specific sections (colon-separated) in the manual pages.</li>
+                <li><strong>-?, --help:</strong> Display the help list.</li>
+            </ul>
+            <pre><code>Example: apropos network</code></pre>
+            <img src="aporos.jpg" alt="Apropos command example">
+        </div>
+
+        <div class="command-box" id="info">
+            <h2>Info</h2>
+            <p>The <strong>info</strong> command provides comprehensive documentation about commands and their options. It's an alternative to the <code>man</code> command, offering more detailed explanations. This is particularly helpful for users seeking in-depth information about complex commands.</p>
+            <pre><code>Example: info [OPTION]... [MENU-ITEM...]</code></pre>
+<p>where,
+<ul>
+<li><strong>OPTIONS:</strong> Modify the behavior of the command.</li>
+<li><strong>MENU-ITEM:</strong> Specify a particular section or node in the documentation to visit.</li>
+</ul>
+<ul><strong>Key Options for the info command</strong></ul>
+The info command supports several options that enhance its functionality. Below are the most useful ones:
+<ul>
+<li><strong>-a, --all</strong>	Use all matching manuals.</li>
+<li><strong>-k, --apropos=STRING</strong>	Look up STRING in all indices of all manuals.</li>
+<li><strong>-d, --directory=DIR</strong>	Add DIR to INFOPATH.</li>
+<li><strong>-f, --file=MANUAL</strong>	Specify the Info manual to visit.</li>
+<li><strong>-h, --help</strong>	Display help and exit.</li>
+<li><strong>-n, --node=NODENAME</strong>	Specify nodes in the first visited Info file.</li>
+<li><strong>-o, --output=FILE</strong>	Output selected nodes to FILE.</li>
+<li><strong>-O, --show-options, --usage</strong>	Go to the command-line options node.</li>
+<li><strong>-v, --variable VAR=VALUE</strong>	Assign VALUE to the Info variable VAR.</li>
+<li><strong>--version</strong>	Display version information and exit.</li>
+<li><strong>-w, --where, --location</strong>	Print the physical location of the Info file.</li></ul></p>
+            <img src="info.png" alt="Info command example">
+        </div>
+
+        <div class="command-box" id="alias">
+            <h2>Alias</h2>
+            <p>With <strong>alias</strong>, you can create custom shortcuts for frequently used commands. This saves time and reduces typing errors, especially when dealing with long or complex commands.</p>
+            <pre><code>Example: alias ll='ls -l'</code></pre>
+            <img src="alias.jpg" alt="Alias command example">
+        </div>
+
+        <div class="command-box" id="uname">
+            <h2>Uname</h2>
+            <p>The <strong>uname</strong> command displays system information, such as the operating system name, version, and architecture. This is crucial for understanding the environment you are working in, especially during troubleshooting.
+<ul><string>Options avaliable ‘uname’ Command in Linux</ul></strong>
+<li><strong>-a or --all</strong>:   Displays all available information.</li>
+<li><strong>-s or --kernel-name</strong>:  Shows the kernel name.</li>
+<li><strong>-n or --nodename</strong>:  Displays the network (domain) name of the machine.</li>
+<li><strong>-r or --kernel-release</strong>:  Shows the kernel release.</li>
+<li><strong>-v or --kernel-version</strong>:  Displays the kernel version.</li>
+<li><strong>-m or --machine</strong>:  Shows the machine hardware name.</li>
+<li><strong>-p or --processor</strong>:  Displays the processor type or “unknown.”</li>
+<li><strong>-i or --hardware-platform</strong>:  Shows the hardware platform or “unknown.”</li>
+<li><strong>-o or --operating-system</strong>:  Displays the operating system.</li></p>
+            <pre><code>Example: uname -a</code></pre>
+            <img src="uname.jpg" alt="Uname command example">
+        </div>
+
+        <div class="command-box" id="df">
+            <h2>Df</h2>
+            <p>The <strong>df</strong> command shows disk space usage for file systems on your system. Use the <code>-h</code> flag for human-readable sizes. This command is particularly useful for monitoring disk usage on servers or diagnosing storage-related issues.
+<ul>Options Available in `df` command in Linux</ul>
+<li><strong>‘-a’ or ‘–all’</strong>:	Includes pseudo, duplicate, and inaccessible file systems in the output.
+<li><strong>‘-B <SIZE>’ or ‘–block-size=<SIZE>’</strong>:	Scales sizes by SIZE before printing them.
+<li><strong>‘-h’ or ‘–human-readable’</strong>:	Prints sizes in a human-readable format using power of 1024.
+<li><strong>‘-H’ or ‘–si’</strong>:	Prints sizes in a human-readable format using power of 1000.
+<li><strong>‘-i’ or ‘–inodes’</strong>:	Lists inode information instead of block usage.
+<li><strong>‘-l’ or ‘–local’</strong>:	Limits listing to local file systems.
+<li><strong>‘-P’ or ‘–portability’</strong>:	Uses POSIX output format for better portability.
+<li><strong>‘–sync’</strong>:	Invokes sync before getting usage info.
+<li><strong>‘–total’</strong>:	Elides all entries insignificant to available space and produces a grand total.
+<li><strong>‘-t <TYPE>’ or ‘–type=<TYPE>’</strong>:	Limits listing to file systems of type TYPE.
+<li><strong>‘-T’ or ‘–print-type’</strong>:	Prints file system type</p>
+            <pre><code>Example: df -h</code></pre>
+            <img src="df.jpg" alt="Df command example">
+        </div>
+
+        <div class="command-box" id="du">
+            <h2>Du</h2>
+            <p>The <strong>du</strong> command estimates file or directory space usage. Combine it with <code>-sh</code> for a summary in human-readable format. This is helpful for identifying large files or directories consuming significant storage.
+<ul>Options Available in `du` command in Linux</ul>
+<li><strong>-0, –null</strong>: end each output line with NULL
+<li><strong>-a or –all</strong>:  Displays disk usage information for all files and directories, including hidden ones.
+<li><strong>–apparent-size</strong>: print apparent sizes, rather than disk usage
+<li><strong>-B, –block-size=SIZE</strong>: scale sizes to SIZE before printing on console
+<li><strong>-c or –total</strong>: Shows the total disk usage in addition to individual usage for directories and files.
+<li><strong>-d, –max-depth=N</strong>: print total for directory only if it is N or fewer levels below command line argument
+<li><strong>-h or –human-readable</strong>: Displays sizes in human-readable format, using units such as KB, MB, GB, etc. This option makes it easier to interpret the disk usage information.
+<li><strong>-S, -separate-dirs</strong>: for directories, don’t include size of subdirectories
+<li><strong>-s or –summarize</strong>: Provides a summary of the disk usage for the specified directory or file, without displaying individual usage details for subdirectories.
+<li><strong>–time</strong>: show time of last modification of any file or directory
+<li><strong>–exclude</strong>: Excludes specific directories or files from disk usage calculation based on patterns or names.</p>
+            <pre><code>Example: du -sh /path/to/directory</code></pre>
+            <img src="du.jpg" alt="Du command example">
+        </div>
+
+        <div class="command-box" id="mount">
+            <h2>Mount</h2>
+            <p>The <strong>mount</strong> command is used to attach a file system to a directory. It's commonly used to access external drives. Knowing how to mount and unmount devices is essential for managing removable media.</p>
+<ul>Options Available in `mount` command in Linux</ul>
+<li><strong>l</strong> :  Lists all the file systems mounted yet.
+<li><strong>h</strong> :  Displays options for command.
+<li><strong>V</strong> :  Displays the version information.
+<li><strong>a</strong> :  Mounts all devices described at /etc/fstab.
+<li><strong>t</strong> :  Type of filesystem device uses.
+<li><strong>T</strong> :  Describes an alternative fstab file.
+<li><strong>r</strong> :  Read-only mode mounted.
+            <pre><code>Example: mount -l -t ext4</code></pre>
+            <img src="mount.jpg" alt="Mount command example">
+        </div>
+
+        <div class="command-box" id="ln">
+            <h2>Ln</h2>
+            <p>The <strong>ln</strong> command creates links between files. Use the <code>-s</code> option for symbolic links (shortcuts). This is useful for creating easily accessible references to important files or directories.</p>
+            <pre><code>Example: <ul>ln [OPTION]... [-T] TARGET LINK_NAME   (1st form)</ul>
+<ul>ln [OPTION]... TARGET... DIRECTORY     (2nd form)</ul>
+<ul>ln [OPTION]... -t DIRECTORY TARGET...  (3rd form)</ul></code></pre>
+            <img src="ln.jpg" alt="Ln command example">
+        </div>
+
+        <div class="command-box" id="man">
+            <h2>Man</h2>
+            <p>The <strong>man</strong> command displays the manual pages for other commands. It's essential for learning about options and usage, especially when using unfamiliar commands.</p>
+            <pre><code>Example: man ls</code></pre>
+            <img src="man.jpg" alt="Man command example">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mathew Wilson | Linux Command Reference</p>
+    </footer>
+
+    <button class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">&#8679;</button>
+</body>
+</html>
